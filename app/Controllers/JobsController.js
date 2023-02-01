@@ -1,3 +1,4 @@
+import { setText } from "../Utils/Writer.js"
 
 export class JobsController {
 
@@ -7,6 +8,9 @@ export class JobsController {
 
 
   show() {
-    console.log('TODO jobs')
+    
+    setText('add-listing-button', '🪦 Dead end Job?')
+    setText('listingFormLabel', '🪦 Dig up a new Job')
+    
   }
 }

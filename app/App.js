@@ -4,7 +4,7 @@ import { JobsController } from './Controllers/JobsController.js'
 
 
 class App {
-  carsController = new CarsController()
+  carsController = new CarsController() // (AKA) constructor
   jobsController = new JobsController()
   housesController = new HousesController()
 }

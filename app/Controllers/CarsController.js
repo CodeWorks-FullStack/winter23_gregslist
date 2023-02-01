@@ -1,13 +1,14 @@
+import { setText } from "../Utils/Writer.js"
 
 export class CarsController {
 
   constructor() {
-    console.log('Hello this is the cars Controller')
+    this.show()
   }
 
-
   show(){
-    console.log('lets do it')
+    setText('add-listing-button', '🚙 A new Car?')
+    setText('listingFormLabel', '🚓 Impounded title... Get it cheap')
   }
 
 }
