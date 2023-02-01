@@ -1,4 +1,6 @@
 import { appState } from "../AppState.js"
+import { Car } from "../Models/Car.js"
+import { carsService } from "../Services/CarsService.js"
 import { getFormData } from "../Utils/FormHandler.js"
 import { Pop } from "../Utils/Pop.js"
 import { setHTML, setText } from "../Utils/Writer.js"
@@ -33,6 +35,9 @@ export class CarsController {
   show() {
     setText('add-listing-button', '🚙 A new Car?')
     setText('listingFormLabel', '🚓 Impounded title... Get it cheap')
+
+    setHTML('the-actual-form', Car.CarForm())
+
     _drawCars()
   }
 
@@ -41,7 +46,12 @@ export class CarsController {
       event.preventDefault()
       const form = event.target
       const formData = getFormData(form)
+
+      carsService.createCar(formData)
+
       console.log(formData)
+      // @ts-ignore
+      form.reset()
     } catch (error) {
       Pop.error(error)
     }
