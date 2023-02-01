@@ -1,6 +1,9 @@
+import { generateId } from "../Utils/generateId.js"
+
 export class Car {
 
   constructor(data) {
+    this.id = data.id || generateId() // you only need this this week
     this.make = data.make
     this.model = data.model
     this.year = data.year
@@ -12,7 +15,7 @@ export class Car {
   get CarCard() {
     return /*html*/`
     <div class="col-md-4 my-3">
-    <div class="card elevation-2 car" data-bs-toggle="modal" data-bs-target="#listingModal">
+    <div class="card elevation-2 car" onclick="app.carsController.setActiveCar('${this.id}')" data-bs-toggle="modal" data-bs-target="#listingModal">
       <img
         src="${this.imgUrl}"
         alt="${this.make}" class="rounded">

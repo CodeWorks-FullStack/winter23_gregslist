@@ -13,6 +13,10 @@ function _drawCars() {
 }
 
 function _drawCar() {
+
+  setText('listingModalLabel', `${appState.car.make} ${appState.car.model}`)
+  setHTML('listing-modal-body', appState.car.CarCard)
+
   // listingModalLabel
   // 'listing-modal-body'
 
@@ -39,6 +43,14 @@ export class CarsController {
     setHTML('the-actual-form', Car.CarForm())
 
     _drawCars()
+  }
+
+  setActiveCar(carId) {
+    try {
+      carsService.setActiveCar(carId)
+    } catch (error) {
+      Pop.error(error)
+    }
   }
 
   handleFormSubmit() {
