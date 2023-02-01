@@ -12,7 +12,7 @@ export class Car {
     this.description = data.description
   }
 
-  get CarCard() {
+  get CarCardTemplate() {
     return /*html*/`
     <div class="col-md-4 my-3">
     <div class="card elevation-2 car" onclick="app.carsController.setActiveCar('${this.id}')" data-bs-toggle="modal" data-bs-target="#listingModal">
@@ -24,6 +24,17 @@ export class Car {
   </div>
     `
   }
+
+
+  get CarDetailsTemplate(){
+    return /*html*/`
+      <div>
+        <button class="btn btn-danger" data-bs-dismiss="modal" onclick="app.carsController.deleteCar('${this.id}')">DELETE THE CAR!!!!!</button>
+      </div>
+    `
+  }
+
+
 
   static CarForm() {
     return /*html*/`
@@ -61,7 +72,7 @@ export class Car {
 
         <div class="d-flex my-4 gap-5 align-items-center">
           <button class="btn" type="reset">Cancel</button>
-          <button class="btn btn-primary" type="submit">Submit</button>
+          <button class="btn btn-primary" type="submit" data-bs-dismiss="offcanvas">Submit</button>
         </div>
 
       </form>

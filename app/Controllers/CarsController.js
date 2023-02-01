@@ -8,32 +8,27 @@ import { setHTML, setText } from "../Utils/Writer.js"
 
 function _drawCars() {
   let template = ''
-  appState.cars.forEach(c => template += c.CarCard)
+  appState.cars.forEach(c => template += c.CarCardTemplate)
   setHTML('listings', template)
 }
 
 function _drawCar() {
 
   setText('listingModalLabel', `${appState.car.make} ${appState.car.model}`)
-  setHTML('listing-modal-body', appState.car.CarCard)
+  setHTML('listing-modal-body', appState.car.CarDetailsTemplate)
 
   // listingModalLabel
   // 'listing-modal-body'
 
 }
 
-
 export class CarsController {
 
   constructor() {
     this.show()
-
     // SETUP LISTENERS
-
     appState.on('cars', _drawCars)
     appState.on('car', _drawCar)
-
-
   }
 
   show() {
@@ -64,6 +59,17 @@ export class CarsController {
       console.log(formData)
       // @ts-ignore
       form.reset()
+    } catch (error) {
+      Pop.error(error)
+    }
+  }
+
+  async deleteCar(carId) {
+    try {
+      const yes = await Pop.confirm('Are you really sure you don\'t want to delete the car maybe yes?')
+      if (!yes) { return } // full stop
+
+      carsService.deleteCar(carId)
     } catch (error) {
       Pop.error(error)
     }
