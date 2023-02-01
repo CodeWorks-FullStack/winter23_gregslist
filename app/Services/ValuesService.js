@@ -6,7 +6,6 @@ function save() {
   saveState('values', appState.values)
 }
 
-
 class ValuesService {
   removeAll() {
     appState.values = []
